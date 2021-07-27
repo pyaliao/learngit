@@ -52,5 +52,17 @@
  */
 
 const myPow = function (x, n) {
-  
+  const multiQuick = function (x, n) {
+    let ret = 1
+    let contribute = x
+    while (n > 0) {
+      if (n % 2 === 1) {
+        ret *= contribute
+      }
+      contribute *= contribute
+      n = parseInt(n / 2)
+    }
+    return ret
+  }
+  return n > 0 ? multiQuick(x, n) : 1 / multiQuick(x, n)
 }
