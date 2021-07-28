@@ -73,3 +73,4 @@ const myPow = function (x, n) {
   }
   return n > 0 ? multiQuick(x, n) : 1 / multiQuick(x, -n)
 }
+console.log(myPow(10, 3))
