@@ -85,3 +85,4 @@
   4. 创建+切换分支：`git checkout -b <name>`或者`git switch -c <name>`
   5. 合并某分支到当前分支：`git merge <name>`
   6. 删除分支：`git branch -d <name>`
+  我是分支branch1
