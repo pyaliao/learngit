@@ -73,8 +73,15 @@
 
 ### 分支管理
 
-* git branch branchname -- 创建分支
-* git checkout branchname -- 切换分支
-* git checkout -b branchname -- 创建并切换分支，等价于上面两条命令
-* git branch -- 查看所有分支，当前工作的分支前面有一个星号
-我是新的
+* `git branch branchname` -- 创建分支
+* `git checkout branchname` -- 切换分支
+* `git checkout -b branchname` -- 创建并切换分支，等价于上面两条命令
+* `git branch` -- 查看所有分支，当前工作的分支前面有一个星号
+
+* Git鼓励大量使用分支：
+  1. 查看分支：`git branch`
+  2. 创建分支：`git branch <name>`
+  3. 切换分支：`git checkout <name>`或者`git switch <name>`
+  4. 创建+切换分支：`git checkout -b <name>`或者`git switch -c <name>`
+  5. 合并某分支到当前分支：`git merge <name>`
+  6. 删除分支：`git branch -d <name>`
