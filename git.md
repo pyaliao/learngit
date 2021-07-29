@@ -86,3 +86,30 @@
   5. 合并某分支到当前分支：`git merge <name>`
   6. 删除分支：`git branch -d <name>`
 
+### 解决冲突
+
+* 分支合并出现冲突时，需要手动解决。直接打开冲突文件，保留自己想要的，删除不要的。
+然后`git add`与`git commit`即可完成最终的分支合并。最后，可以`git branch -d branchname`
+删除分支。
+* `git log --graph` 可以查看分支合并图
+* `git log --graph --pretty=oneline` 可以查看分支合并图，但是将提交信息显示为一行
+
+### 分支管理策略
+
+* 通常，合并分支时，如果可能，Git会用`Fast forward模式`，但这种模式下，删除分支后，会丢掉分支信息，即看不出来曾经做过分支合并
+
+* 如果要`强制禁用Fast forward模式`，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息
+
+* `git merge --no-ff -m "merge with no-ff" dev`，合并分支时，加上`--no-ff`参数可以禁止使用`fast forward模式`，即使用普通分支合并模式，此时`git`会创建一个新的`commit`，因此我们用`-m参数`将`commit描述`添加进去。
+
+* 普通模式合并后，用git log --graph --pretty=oneline可以查看分支合并历史：
+
+  ![普通模式合并](no-ff-merge-hist.jpg)
+
+* 分支策略：实际开发中，应该遵循以下几点进行分支管理
+  1. `master分支`应该非常稳定，即只用来发布新版本，平时不能在上面干活
+  2. 干活都在`Dev分支`上，也就是说，`Dev分支`是不稳定的，到某个时候，比如1.0版本发布时，再把`Dev分支`合并到`master`上，然后在`master`上发布1.0版本
+  3. 你和你的小伙伴们每个人都在`Dev分支`上干活，同时每个人都有自己的分支，时不时地往`Dev分支`上合并就可以了，因此团队合作像下图：  
+  ![分支策略](./branch-strategy.jpg)
+
+  4. 合并分支时，加上`--no-ff参数`就可以用`普通模式合并`，合并后的历史有分支，能看出来曾经做过合并，而`fast forward合并`就看不出来曾经做过合并。
