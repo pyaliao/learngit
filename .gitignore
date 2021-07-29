@@ -1,0 +1,6 @@
+*.png
+*.jpg
+
+!no-ff-merge-hist.jpg
+!branch-strategy.jpg
+!stage.png
