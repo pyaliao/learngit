@@ -1,5 +1,6 @@
 *.png
 *.jpg
+*.css
 
 !no-ff-merge-hist.jpg
 !branch-strategy.jpg
