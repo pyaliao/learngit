@@ -45,7 +45,7 @@ const jump = function (nums) {
   let maxPosition = 0
   let step = 0
   let end = maxPosition
-  let len = nums.length
+  const len = nums.length
   // i < len - 1，不必遍历最后一个元素，因为在到达最后一个元素之前
   // 肯定有一个元素可以到达最后一个元素
   for (let i = 0; i < len - 1; i++) {
@@ -59,3 +59,4 @@ const jump = function (nums) {
   }
   return step
 }
+console.log(jump([2, 3, 1, 1, 4]))
