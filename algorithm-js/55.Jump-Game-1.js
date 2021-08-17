@@ -31,6 +31,11 @@ const canJump = function (nums) {
       end = maxPosition
     }
   }
-  return true
+  // 当边界大于等于len-1时，可以达到最后一个元素
+  if (end >= len - 1) {
+    return true
+  } else {
+    return false
+  }
 }
-console.log(canJump([3, 2, 3, 0, 0]))
+console.log(canJump([3, 2, 1, 0, 0]))
