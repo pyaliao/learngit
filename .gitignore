@@ -1,5 +1,7 @@
+.*
 *.png
 *.jpg
 *.css
 *launch.json
 workspace.code-workspace
+!.gitignore
