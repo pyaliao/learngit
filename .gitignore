@@ -1,7 +1,5 @@
 *.png
 *.jpg
 *.css
+launch.json
 workspace.code-workspace
-!no-ff-merge-hist.jpg
-!branch-strategy.jpg
-!stage.png
