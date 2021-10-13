@@ -1,8 +1,8 @@
 *.png
 *.jpg
 *.css
-*/.vscode/launch.json
-*/img/
+*launch.json
+
 workspace.code-workspace
 !no-ff-merge-hist.jpg
 !branch-strategy.jpg
