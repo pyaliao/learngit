@@ -44,8 +44,10 @@ const getPermutation = function (n, k) {
   }
   --k
   for (let i = 1; i <= n; i++) {
+    // 获取以第i个元素ai的第k个排列，此时获取的order表示ai剩余元素中第order小的元素
     let order = Math.floor(k / factorial[n - i]) + 1
     for (let j = 1; j <= n; j++) {
+      // valid数组第j个元素表示整个排列中第j小的元素是否被前面的排列使用
       order -= valid[j]
       if (order === 0) {
         ans += j
