@@ -22,31 +22,18 @@
  * @return {string}
  */
 const addBinary = function (a, b) {
-  let resultStr = ''
-  // 处理较短数组，将其前面填充0至与较长数组长度一致
-  if (a.length > b.length) {
-    b = b.padStart(a.length, '0')
-  } else {
-    a = a.padStart(b.length, '0')
+  a = parseInt(a, 2)
+  b = parseInt(b, 2)
+  let temp
+  while (b) {
+    temp = a ^ b
+    carry = (a & b) << 1
+    a = temp
+    b = carry
   }
-  console.log(a, b)
-  const len = a.length
-  let carry = 0
-  let sum = 0
-  for (let i = len - 1; i >= 0; i--) {
-    sum = parseInt(a[i]) + parseInt(b[i]) + carry
-    if (sum >= 2) {
-      resultStr = sum % 2 + resultStr
-      carry = 1
-    } else {
-      resultStr = sum + resultStr
-      carry = 0
-    }
-    console.log(resultStr)
-  }
-  carry && (resultStr = '1' + resultStr)
-  return resultStr
+  return a.toString(2)
 }
+// 如果最终十进制数值大于js限制的最大数值时，转二进制转会得到错误的结果
 const a = '11'
 const b = '1'
 console.log(addBinary(a, b))
