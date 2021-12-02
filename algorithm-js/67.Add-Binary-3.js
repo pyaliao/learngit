@@ -24,7 +24,7 @@
 const addBinary = function (a, b) {
   a = parseInt(a, 2)
   b = parseInt(b, 2)
-  let temp
+  let temp, carry
   while (b) {
     temp = a ^ b
     carry = (a & b) << 1
