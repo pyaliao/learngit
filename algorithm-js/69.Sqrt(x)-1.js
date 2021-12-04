@@ -15,6 +15,7 @@
 // 提示：
 // 0 <= x <= 231 - 1
 
+// 暴力解法
 /**
  * @param {number} x
  * @return {number}
