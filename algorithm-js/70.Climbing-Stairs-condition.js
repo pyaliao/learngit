@@ -49,7 +49,7 @@ const climbStairs = function (n) {
     return f1
   } else if (n === 2) {
     return f2
-  } 
+  }
   let count = 0
   for (let i = 3; i <= n; i++) {
     count = f0 + f2

@@ -54,4 +54,3 @@ const climbStairs = function (n) {
 console.log(climbStairs(6))
 console.log(climbStairs(7))
 console.log(climbStairs(8))
-
