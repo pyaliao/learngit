@@ -39,7 +39,6 @@
 const climbStairs = function (n) {
   const matrix = [[1, 1], [1, 0]]
   const ans = matrixPow(matrix, n)
-  console.log(ans)
   return ans[1][0] + ans[1][1]
 }
 
@@ -66,12 +65,13 @@ const matrixPow = function (matrix, n) {
 const matrixMultiplication = function (leftMatrix, rightMatrix) {
   const rows = leftMatrix.length
   const cols = rightMatrix[0].length
+  const brows = rightMatrix.length
   // new数组时，如果不fill填充，则数组元素是空位
   // 而map遍历数组时，会跳过空位，因此此处生成数组必须在第一次时填充数组
   const ans = new Array(rows).fill().map(item => new Array(cols).fill(0))
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
-      for (let k = 0; k < cols; k++) {
+      for (let k = 0; k < brows; k++) {
         ans[i][j] += leftMatrix[i][k] * rightMatrix[k][j]
       }
     }
@@ -79,4 +79,4 @@ const matrixMultiplication = function (leftMatrix, rightMatrix) {
   return ans
 }
 
-console.log(climbStairs(6))
+console.log(matrixMultiplication([[1, 2], [1, 1], [1, 0]], [[1, 1, 2], [1, 1, 3]]), climbStairs(6))
