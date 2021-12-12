@@ -35,7 +35,7 @@
  * @return {number}
  */
 const dfs = function (word1, m, word2, n, memo) {
-  console.log(memo[m], m, n)
+  // console.log(memo, m, n)
   if (memo[m][n] !== -1) {
     return memo[m][n]
   }
@@ -46,12 +46,12 @@ const dfs = function (word1, m, word2, n, memo) {
     return memo[m][n]
   }
   if (word1[m - 1] === word2[n - 1]) {
-    memo[m - 1][n - 1] = dfs(word1.substring(0, m - 1), m - 1, word2.substring(0, n - 1), n - 1)
+    memo[m - 1][n - 1] = dfs(word1.substring(0, m - 1), m - 1, word2.substring(0, n - 1), n - 1, memo)
     return memo[m - 1][n - 1]
   }
-  memo[m][n - 1] = dfs(word1.substring(0), m, word2.substring(0, n - 1), n - 1)
-  memo[m - 1][n] = dfs(word1.substring(0, m - 1), m - 1, word2.substring(0), n)
-  memo[m - 1][n - 1] = dfs(word1.substring(0, m - 1), m - 1, word2.substring(0, n - 1), n - 1)
+  memo[m][n - 1] = dfs(word1.substring(0), m, word2.substring(0, n - 1), n - 1, memo)
+  memo[m - 1][n] = dfs(word1.substring(0, m - 1), m - 1, word2.substring(0), n, memo)
+  memo[m - 1][n - 1] = dfs(word1.substring(0, m - 1), m - 1, word2.substring(0, n - 1), n - 1, memo)
   return Math.min(memo[m][n - 1], memo[m - 1][n], memo[m - 1][n - 1]) + 1
 }
 const minDistance = function (word1, word2) {
@@ -61,14 +61,14 @@ const minDistance = function (word1, word2) {
   return dfs(word1, m, word2, n, memo)
 }
 // 测试数据1
-const word1 = 'horse'
-const word2 = 'ros'
+// const word1 = 'horse'
+// const word2 = 'ros'
 
 // 测试数据2
 // const word1 = 'intention'
 // const word2 = 'execution'
 
 // 测试数据3
-// const word1 = 'dinitrophenylhydrazine'
-// const word2 = 'benzalphenylhydrazone'
+const word1 = 'dinitrophenylhydrazine'
+const word2 = 'benzalphenylhydrazone'
 console.log(minDistance(word1, word2))
