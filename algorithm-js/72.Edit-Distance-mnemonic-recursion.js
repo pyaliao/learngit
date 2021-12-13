@@ -35,7 +35,7 @@
  * @return {number}
  */
 const dfs = function (word1, m, word2, n, memo) {
-  // console.log(memo, m, n)
+  // 剪枝操作（记忆化的作用）
   if (memo[m][n] !== -1) {
     return memo[m][n]
   }

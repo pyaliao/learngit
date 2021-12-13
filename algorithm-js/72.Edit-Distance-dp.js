@@ -28,6 +28,19 @@
 // 0 <= word1.length, word2.length <= 500
 // word1 和 word2 由小写英文字母组成
 
+// 思路：要将word1经过三种操作转换为word2，此三种操作时增、删、改（替换）
+// 分两种情况讨论：
+// 1. 当word1[i]==word2[j]的时候，将word1[0...i]转换为word2[0...j]需要的操作数
+// 就与将word1[0...i-1]转换为word2[0...j-1]的操作数相同
+// 2. 当word1[i]!=word2[j]的时候，将Word1[0...i]转换为word2[0...j]需要的操作数
+// 可以根据我们可以对word1进行的三种操作分为三种情况讨论：
+// 2.1 当进行插入操作时，即当将word2[j]插入word1[0...i]末尾时，word1变为word1[0...i,word2[j]]
+//     此时word1与Word2尾部元素相同，只需要求出word1[0...i]到word2[0...j-1]操作数即可
+// 2.2 当进行删除操作时，将word1末尾元素删除，然后求word1[0...i-1]到word2[0...j]的操作数即可
+// 2.3 当进行替换操作时，将word1末尾元素替换为与Word2末尾元素相同，然后求word1[0...i-1]到word2[0...j-1]的操作数即可
+// 最终实现可以使用自底向上的动态规划，或者自顶向下的递归，
+// 动态规划可以优化空间复杂度，递归可以通过记忆化递归优化时间复杂度
+
 // 动态规划：自底向上
 /**
  * @param {string} word1
@@ -54,7 +67,7 @@ const minDistance = function (word1, word2) {
       if (word1[i - 1] !== word2[j - 1]) {
         dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1
       } else {
-        dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1] - 1) + 1
+        dp[i][j] = dp[i - 1][j - 1]
       }
     }
   }
