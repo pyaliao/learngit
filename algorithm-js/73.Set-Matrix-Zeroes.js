@@ -26,5 +26,37 @@
  * @return {void} Do not return anything, modify matrix in-place instead.
  */
 const setZeroes = function (matrix) {
-  
+  const m = matrix.length
+  const n = matrix[0].length
+  const rows = new Array(m).fill(0)
+  const cols = new Array(n).fill(0)
+  // 记录0的行和列下标
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (matrix[i][j] === 0) {
+        rows[i] = 1
+        cols[j] = 1
+      }
+    }
+  }
+  // 将有0的行置为0
+  for (let i = 0; i < m; i++) {
+    if (rows[i] === 1) {
+      for (let j = 0; j < n; j++) {
+        matrix[i][j] = 0
+      }
+    }
+  }
+  // 将有0的列置为0
+  for (let i = 0; i < n; i++) {
+    if (cols[i] === 1) {
+      for (let j = 0; j < m; j++) {
+        matrix[j][i] = 0
+      }
+    }
+  }
+  return matrix
 }
+// const matrix = [[1, 1, 1], [1, 0, 1], [1, 1, 1]]
+const matrix = [[0, 1, 2, 0], [3, 4, 5, 2], [1, 3, 1, 5]]
+console.log(setZeroes(matrix))
