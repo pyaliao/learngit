@@ -21,6 +21,7 @@
 // 一个简单的改进方案是使用 O(m + n) 的额外空间，但这仍然不是最好的解决方案。
 // 你能想出一个仅使用常量空间的解决方案吗？
 
+// 使用两个数组分别记录某行及某列是否出现0，空间复杂度O(m + n)
 /**
  * @param {number[][]} matrix
  * @return {void} Do not return anything, modify matrix in-place instead.
@@ -28,9 +29,10 @@
 const setZeroes = function (matrix) {
   const m = matrix.length
   const n = matrix[0].length
+  // 用rows记录哪一行有0，用cols记录哪一列有0
   const rows = new Array(m).fill(0)
   const cols = new Array(n).fill(0)
-  // 记录0的行和列下标
+  // 哪一行有0或者哪一列有0，就将rows及cols对应下标的值置为1
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
       if (matrix[i][j] === 0) {
@@ -39,19 +41,26 @@ const setZeroes = function (matrix) {
       }
     }
   }
-  // 将有0的行置为0
+  // // 将有0的行置为0
+  // for (let i = 0; i < m; i++) {
+  //   if (rows[i] === 1) {
+  //     for (let j = 0; j < n; j++) {
+  //       matrix[i][j] = 0
+  //     }
+  //   }
+  // }
+  // // 将有0的列置为0
+  // for (let i = 0; i < n; i++) {
+  //   if (cols[i] === 1) {
+  //     for (let j = 0; j < m; j++) {
+  //       matrix[j][i] = 0
+  //     }
+  //   }
+  // }
   for (let i = 0; i < m; i++) {
-    if (rows[i] === 1) {
-      for (let j = 0; j < n; j++) {
+    for (let j = 0; j < n; j++) {
+      if (rows[i] || cols[j]) {
         matrix[i][j] = 0
-      }
-    }
-  }
-  // 将有0的列置为0
-  for (let i = 0; i < n; i++) {
-    if (cols[i] === 1) {
-      for (let j = 0; j < m; j++) {
-        matrix[j][i] = 0
       }
     }
   }
