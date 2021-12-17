@@ -17,6 +17,7 @@
 // 1 <= m, n <= 100
 // - 104 <= matrix[i][j], target <= 104
 
+// 方法一、暴力解法
 /**
  * @param {number[][]} matrix
  * @param {number} target
