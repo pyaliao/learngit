@@ -31,7 +31,7 @@ const searchMatrix = function (matrix, target) {
   // 先对行进行二分
   while (left <= right) {
     // 做减法，防止整数溢出
-    let mid = Math.floor((right - left) / 2) + left
+    const mid = Math.floor((right - left) / 2) + left
     if (matrix[mid][0] > target) {
       right = mid - 1
     } else if (matrix[mid][cols - 1] < target) {
@@ -42,7 +42,7 @@ const searchMatrix = function (matrix, target) {
       let end = cols - 1
       while (start <= end) {
         // 做减法，防止整数溢出
-        let subMid = Math.floor((end - start) / 2) + start
+        const subMid = Math.floor((end - start) / 2) + start
         if (matrix[mid][subMid] > target) {
           end = subMid - 1
         } else if (matrix[mid][subMid] < target) {
