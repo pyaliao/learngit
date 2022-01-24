@@ -41,6 +41,9 @@ const combine = function (n, k) {
       return
     }
     // 选择当前位置
+    // 将当前位置元素加入tmp，等调用结束，在将其弹出，将tmp恢复
+    // 此处使用的是数组扩展语法，将一个新数组传给dfs，因此，tmp没有变，
+    // 后面的dfs调用中直接使用tmp即可
     dfs(cur + 1, n, k, [...tmp, cur])
     // 不选择当前位置
     dfs(cur + 1, n, k, tmp)
