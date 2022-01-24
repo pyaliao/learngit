@@ -17,7 +17,6 @@
 // 输入：n = 1, k = 1
 // 输出：[[1]]
 
-
 // 提示：
 // 1 <= n <= 20
 // 1 <= k <= n
@@ -30,7 +29,7 @@
 
 const combine = function (n, k) {
   const ans = []
-  let tmp = []
+  const tmp = []
   const dfs = function (cur, n, k, tmp) {
     // 剪枝操作：长度加上区间[cur, n]的长度小于k，不可能构造出长度为k的tmp
     if (tmp.length + (n - cur + 1) < k) {
@@ -51,5 +50,6 @@ const combine = function (n, k) {
 }
 
 // 测试数据
-const n = 4, k = 2
+const n = 4
+const k = 2
 console.log(combine(n, k))
