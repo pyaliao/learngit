@@ -22,6 +22,9 @@
  * @return {number}
  */
 const largestRectangleArea = function (heights) {
+  // 给数组首尾添加两个哨兵
+  heights.push(0)
+  heights.unshift(0)
   // 遍历整个数组
   const len = heights.length
   const stack = []
@@ -30,22 +33,23 @@ const largestRectangleArea = function (heights) {
     // 当栈不为空，且栈顶元素大于新遍历到的元素时，
     // 说明当前栈顶元素构成的矩形区域右边界确定，就是当前元素
     // 其左边界就是栈中栈顶元素前一元素，其矩形区域确定
-    while (!stack.length && stack[stack.length - 1] > heights[i]) {
+    while (stack.length && heights[stack[stack.length - 1]] > heights[i]) {
       // 将栈顶元素出栈
       const top = stack.pop()
       // 计算矩形面积
-      const left = stack.length > 0 ? stack[stack.length - 1] : -1
-      const right = i === len - 1 ? i + 1 : i
+      const left = stack[stack.length - 1]
+      const right = i
       ans = (right - left - 1) * heights[top] > ans ? (right - left - 1) * heights[top] : ans
     }
+    // 如果栈为空，或者栈顶元素小于等于新遍历到的元素时，将当前下标入栈
     stack.push(i)
   }
   return ans
 }
 
 // 测试 1
-// const heights = [2, 1, 5, 6, 2, 3]
-// console.log(largestRectangleArea(heights))
-
-const heights = [2, 4]
+const heights = [2, 1, 5, 6, 2, 3]
 console.log(largestRectangleArea(heights))
+// 测试 2
+// const heights = [2, 4]
+// console.log(largestRectangleArea(heights))
