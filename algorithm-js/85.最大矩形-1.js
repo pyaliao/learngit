@@ -32,7 +32,7 @@
 const maximalRectangle = function (matrix) {
   const rows = matrix.length
   const cols = matrix[0].length
-  // 定义一个数组存储柱状图
+  // 定义一个二维数组存储柱状图
   const histogram = new Array(rows).fill().map(item => new Array(cols).fill(0))
   let ans = 0
   // 遍历矩阵，将柱状图存储到histogram
@@ -41,7 +41,7 @@ const maximalRectangle = function (matrix) {
       if (matrix[row][col] === '0') {
         histogram[row][col] = 0
       } else {
-        histogram[row][col] = col === 0 ? histogram[row][col] + 1 : histogram[row][col - 1] + 1
+        histogram[row][col] = row === 0 ? histogram[row][col] + 1 : histogram[row - 1][col] + 1
       }
     }
   }
