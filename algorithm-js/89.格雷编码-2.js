@@ -29,7 +29,7 @@
 // 提示：
 // 1 <= n <= 16
 
-// 对称生成：递归实现
+// 对称生成：循环实现
 // 思路与算法
 // 假设我们已经获取到 n - 1 位的格雷码序列 Gn−1，我们只需要将 Gn−1对称翻转，记作 Gn−1T。
 // Gn−1的首元素和Gn−1T的尾元素都是相同的，反之亦然。如果我们给Gn−1T的每个元素都加上2^(n−1)，
@@ -42,19 +42,18 @@
  * @return {number[]}
  */
 const grayCode = function (n) {
-  if (n === 1) {
-    // 递归出口，直接返回
-    return [0, 1]
-  } else {
-    // 获取n-1位的格雷码
-    const arr = grayCode(n - 1)
-    // 翻转此n-1位的格雷码
-    const reverseArr = arr.slice().reverse()
-    // 给翻转后的格雷码每一位加上2^n-1，此时翻转后的每一位只有一位不一样
-    // 并且翻转后的格雷码最后一位数与翻转前的格雷码首位数只有一位不一样
-    // 反之亦然，这样就得到了最终的结果
-    reverseArr.forEach(item => arr.push(item + Math.pow(2, n - 1)))
-    return arr
+  // 0位格雷码，2^0即1个数，[0, 2^0 - 1] --> [0]
+  const ret = [0]
+  for (let i = 1; i <= n; i++) {
+    // 循环中n每增加一次，格雷码个数增加一倍
+    // 计算i-1位格雷码的长度
+    const len = ret.length
+    // 倒序遍历i-1格雷码，并给其每一位加2^i-1，然后将其push到i-1位格雷码的序列中，即可得到i位格雷码
+    for (let j = len - 1; j >= 0; j--) {
+      // 通过移位运算计算2^(i-1)，将ret每一位数与2^(i-1)做按位或运算来计算它们的和
+      ret.push(ret[j] | 1 << (i - 1))
+    }
   }
+  return ret
 }
 console.log(grayCode(3))

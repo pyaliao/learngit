@@ -29,32 +29,19 @@
 // 提示：
 // 1 <= n <= 16
 
-// 对称生成：递归实现
+// 二进制数转格雷码
 // 思路与算法
-// 假设我们已经获取到 n - 1 位的格雷码序列 Gn−1，我们只需要将 Gn−1对称翻转，记作 Gn−1T。
-// Gn−1的首元素和Gn−1T的尾元素都是相同的，反之亦然。如果我们给Gn−1T的每个元素都加上2^(n−1)，
-// 记作(Gn−1T)′，则Gn−1的首元素和(Gn−1T)′的尾元素只有一位不相同，反之亦然。
-// 因此Gn−1和(G n−1T)′拼接的序列Gn= [Gn−1, (Gn−1T)′] 满足 n 位的格雷码的定义。
-// 初始值G0=[0]
+// 每一位格雷码的序号的二进制位相邻位进行异或运算将得到这位格雷码的二进制表示
 
 /**
  * @param {number} n
  * @return {number[]}
  */
 const grayCode = function (n) {
-  if (n === 1) {
-    // 递归出口，直接返回
-    return [0, 1]
-  } else {
-    // 获取n-1位的格雷码
-    const arr = grayCode(n - 1)
-    // 翻转此n-1位的格雷码
-    const reverseArr = arr.slice().reverse()
-    // 给翻转后的格雷码每一位加上2^n-1，此时翻转后的每一位只有一位不一样
-    // 并且翻转后的格雷码最后一位数与翻转前的格雷码首位数只有一位不一样
-    // 反之亦然，这样就得到了最终的结果
-    reverseArr.forEach(item => arr.push(item + Math.pow(2, n - 1)))
-    return arr
+  const ret = []
+  for (let i = 0; i < 1 << n; i++) {
+    ret.push((i >> 1) ^ i)
   }
+  return ret
 }
 console.log(grayCode(3))
